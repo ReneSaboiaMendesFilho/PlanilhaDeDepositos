@@ -1,0 +1,58 @@
+<h2>Pedidos dos clientes</h2>
+<form action="" Class="form-inline">
+    <div class="form-group mb-2">
+      <input type="text" class="form-control mr-2" placeholder="buscar">
+      <button class="btn btn-outline-success">Buscar</button>
+    </div>
+</form>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Funcionario</th>
+      <th>Produto Solicitado</th>
+      <th>Plataforma</th>
+      <th>Data</th>
+      <th>Nome do cliente</th>
+      <th>Telefone</th>
+      <th>Situação do pedido</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf= "pedidos.length">
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{pedido.pedidosClientesId}}</td>
+      <td>{{pedido.funcionario}}</td>
+      <td>{{pedido.produtoSolicitado}}</td>
+      <td>{{pedido.plataforma}}</td>
+      <td>{{pedido.dataSolicitacao}}</td>
+      <td>{{pedido.nomeCliente}}</td>
+      <td>{{pedido.telefoneCliente}}</td>
+      <td>{{pedido.situacaoDoPedido}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar ">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)" >
+            <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!pedidos.length">
+    <tr>
+      <td>
+        <h4>Nenhum dado encontrado</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer apagar?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
+
